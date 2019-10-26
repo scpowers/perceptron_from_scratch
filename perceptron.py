@@ -22,21 +22,36 @@ ax.scatter(S[:,0], S[:,1], S[:,2], marker='o')
 plt.show()
 
 w = [0, 0]
+incomplete = True
 flag = True
+count = 0
 iterations = 0
 
 
-while flag:
-	for k in range(0, 3):
-		print(w)
-		print(S[k][0:2])
-		print(S[k][2]*np.dot(w,S[k][0:2]))
-		if S[k][2]*np.dot(w,S[k][0:2])<=0:
-			w += S[k][0:2]
-			iterations +=1
-			print("iterations = %d" % iterations)
-		else:
-			flag = False
+while incomplete:
+	while count<4:
+		for k in range(0, 4):
+			print("loop index = %d" % k)
+			print(w)
+			print(S[k][0:2])
+			print("dot product = %d" % (S[k][2]*np.dot(w,S[k][0:2])))
+			if S[k][2]*np.dot(w,S[k][0:2])<=0:
+				print("negative or zero value found")
+				w += S[k][2]*S[k][0:2]
+				iterations +=1
+				print("iterations = %d" % iterations)
+				#print(incomplete)
+				print("count before exiting = %d" % count)
+				count = 0
+				print("reset count (count = %d)" % count)
+				break
+			else:
+				print("positive value found")
+				count +=1
+				print("count = %d" % count)
+	print("all positive")
+	incomplete = False
+
 
 print("final iteration count = %d" % iterations)
 print(w)
@@ -57,4 +72,7 @@ ax.set_zlabel('Z Label')
 
 plt.show()
 
-
+for c in range(0, 4):
+	print(c)
+	print(S[c][0:2])
+	print(S[c][2] * np.dot(w, S[c][0:2]))
