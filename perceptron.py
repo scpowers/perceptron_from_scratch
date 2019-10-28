@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-x = np.array([[2, 1],
-			  [3, 1],
+x = np.array([[5, 1],
+			  [7, 1],
 			  [0, 4],
 			  [1, 6]])
 y = np.array([[-1],
@@ -23,7 +23,6 @@ plt.show()
 
 w = [0, 0]
 incomplete = True
-flag = True
 count = 0
 iterations = 0
 
@@ -54,6 +53,7 @@ while incomplete:
 
 
 print("final iteration count = %d" % iterations)
+print('Final w vector:')
 print(w)
 
 fig = plt.figure()
@@ -72,7 +72,8 @@ ax.set_zlabel('Z Label')
 
 plt.show()
 
+print('check dot products')
 for c in range(0, 4):
-	print(c)
+	print('index = %d' % c)
 	print(S[c][0:2])
 	print(S[c][2] * np.dot(w, S[c][0:2]))
